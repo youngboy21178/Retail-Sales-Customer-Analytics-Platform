@@ -1,0 +1,101 @@
+Table orders {
+  order_id varchar [primary key]
+  customer_id varchar
+  order_status varchar 
+  order_purchase_timestamp timestamp
+  order_approved_at timestamp
+  order_delivered_carrier_date date
+  order_delivered_customer_date date
+  order_estimated_delivery_date date
+}
+
+Table order_reviews {
+  review_id varchar [primary key]
+  order_id varchar 
+  review_score int
+  review_comment_title varchar
+  review_comment_message varchar
+  review_creation_date date
+  review_answer_timestamp timestamp
+}
+
+Table order_payments {
+  order_id varchar
+  payment_sequential int
+  payment_type varchar
+  payment_installments int
+  payment_value float
+  
+  Indexes {
+    (order_id, payment_sequential) [pk]
+  }
+}
+
+Table geolocation {
+  geolocation_zip_code_prefix int [primary key]
+  geolocation_lng float 
+  geolocation_lat float
+  geolocation_city varchar
+  geolocation_state varchar
+}
+
+Table category_name_translation {
+  product_category_name varchar [primary key]
+  product_category_name_english varchar
+}
+
+Table order_items {
+  order_id varchar 
+  order_item_id int 
+  product_id varchar
+  seller_id varchar 
+  shipping_limit_date timestamp
+  price float
+  freight_value float
+  
+  Indexes {
+    (order_id, order_item_id) [pk]
+  }
+}
+
+Table sellers {
+  seller_id varchar [primary key]
+  seller_zip_code_prefix int 
+  seller_city varchar 
+  seller_state varchar
+}
+
+Table customers {
+  customer_id varchar [primary key]
+  customer_unique_id varchar [unique]
+  customer_zip_code_prefix int 
+  customer_city varchar
+  customer_state varchar
+}
+
+Table products {
+  product_id varchar [primary key]
+  product_category_name varchar 
+  product_name_lenght float
+  product_description_lenght float
+  product_photos_qty float
+  product_weight_g float
+  product_length_cm float
+  product_width_cm float
+}
+
+
+Ref: customers.customer_id < orders.customer_id
+
+Ref: category_name_translation.product_category_name < products.product_category_name
+
+Ref: products.product_id < order_items.product_id
+
+Ref: sellers.seller_id < order_items.seller_id
+
+Ref: geolocation.geolocation_zip_code_prefix < customers.customer_zip_code_prefix
+Ref: geolocation.geolocation_zip_code_prefix < sellers.seller_zip_code_prefix
+
+Ref: orders.order_id < order_items.order_id
+Ref: orders.order_id < order_payments.order_id
+Ref: orders.order_id < order_reviews.order_id 
