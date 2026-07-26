@@ -1,2 +1,3 @@
 database:
-  database_url: ""  # перезаписується з .env
+  url: ""  
+  schema_path: "Infrastructure/Database/schema.sql"

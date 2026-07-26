@@ -16,5 +16,5 @@ dependencies = [
     "pyyaml",
 ]
 
-[tool.setuptools]
-packages = ["App", "Config", "Cli"]
+[tool.setuptools.packages.find]
+include = ["App", "Config", "Cli", "Infrastructure*"]

@@ -39,7 +39,7 @@ Table geolocation {
   geolocation_state varchar
 }
 
-Table category_name_translation {
+Table product_category_name_translation {
   product_category_name varchar [primary key]
   product_category_name_english varchar
 }
@@ -67,7 +67,7 @@ Table sellers {
 
 Table customers {
   customer_id varchar [primary key]
-  customer_unique_id varchar [unique]
+  customer_unique_id varchar 
   customer_zip_code_prefix int 
   customer_city varchar
   customer_state varchar
@@ -81,6 +81,7 @@ Table products {
   product_photos_qty float
   product_weight_g float
   product_length_cm float
+  product_height_cm float
   product_width_cm float
 }
 

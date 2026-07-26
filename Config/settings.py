@@ -11,7 +11,8 @@ load_dotenv(ENV_PATH)
 
 
 class DataBaseSettings(BaseModel):
-    database_url: str
+    url: str
+    schema_path: str
 
 
 class Settings(BaseModel):
@@ -29,7 +30,7 @@ class Settings(BaseModel):
                 f"Check, if file exist: {ENV_PATH}"
             )
 
-        raw_data["database"]["database_url"] = db_url
+        raw_data["database"]["url"] = db_url
         return cls(**raw_data)
 
 
