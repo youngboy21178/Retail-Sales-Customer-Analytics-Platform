@@ -19,7 +19,6 @@ venv/
 temp.txt
 
 #Data
-*.csv
-*.xlsx
+Data/Raw/
 BI_Project_TOR.md
 to_do.md
